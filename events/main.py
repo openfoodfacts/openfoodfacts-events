@@ -11,6 +11,8 @@ models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
+EVENT_TYPES = ["product_scan", "product_edit"]
+
 
 # Dependency
 def get_db():
@@ -51,10 +53,28 @@ def get_events(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     return items
 
 
-@app.get("/users/{user_id}/events/", response_model=List[schemas.Event])
+@app.get("/events/count")
+def get_events_count(db: Session = Depends(get_db)):
+    items = {}
+    for event_type in EVENT_TYPES:
+        items[event_type] = crud.count_events(db, event_type=event_type)
+    return items
+
+
+@app.get("/user/{user_id}/events/", response_model=List[schemas.Event])
 def get_user_events(user_id: str,
                     skip: int = 0,
                     limit: int = 100,
                     db: Session = Depends(get_db)):
     items = crud.get_user_events(db, user_id=user_id, skip=skip, limit=limit)
+    return items
+
+
+@app.get("/user/{user_id}/events/count")
+def get_user_events_count(user_id: str, db: Session = Depends(get_db)):
+    items = {}
+    for event_type in EVENT_TYPES:
+        items[event_type] = crud.count_user_events(db,
+                                                   event_type=event_type,
+                                                   user_id=user_id)
     return items
