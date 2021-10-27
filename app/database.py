@@ -16,7 +16,7 @@ Base = declarative_base()
 
 logging.basicConfig()
 logger = logging.getLogger("openfoodfacts_events.sqltime")
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 
 
 @event.listens_for(Engine, "before_cursor_execute")

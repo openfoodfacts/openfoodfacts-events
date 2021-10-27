@@ -39,35 +39,29 @@ def create_event(event: schemas.Event,
 
 
 @app.get("/events/", response_model=List[schemas.Event])
-def get_events(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    items = crud.get_events(db, skip=skip, limit=limit)
+def get_events(user_id: str = None,
+               device_id: str = None,
+               skip: int = 0,
+               limit: int = 100,
+               db: Session = Depends(get_db)):
+    items = crud.get_events(db,
+                            user_id=user_id,
+                            device_id=device_id,
+                            skip=skip,
+                            limit=limit)
     return items
 
 
 @app.get("/events/count")
-def get_events_count(db: Session = Depends(get_db)):
+def get_events_count(user_id: str = None,
+                     device_id: str = None,
+                     db: Session = Depends(get_db)):
     items = {}
     for event_type in constants.EVENT_TYPES:
-        items[event_type] = crud.count_events(db, event_type=event_type)
-    return items
-
-
-@app.get("/user/{user_id}/events/", response_model=List[schemas.Event])
-def get_user_events(user_id: str,
-                    skip: int = 0,
-                    limit: int = 100,
-                    db: Session = Depends(get_db)):
-    items = crud.get_user_events(db, user_id=user_id, skip=skip, limit=limit)
-    return items
-
-
-@app.get("/user/{user_id}/events/count")
-def get_user_events_count(user_id: str, db: Session = Depends(get_db)):
-    items = {}
-    for event_type in constants.EVENT_TYPES:
-        items[event_type] = crud.count_user_events(db,
-                                                   event_type=event_type,
-                                                   user_id=user_id)
+        items[event_type] = crud.count_events(db,
+                                              event_type=event_type,
+                                              user_id=user_id,
+                                              device_id=device_id)
     return items
 
 
@@ -75,9 +69,13 @@ def get_user_events_count(user_id: str, db: Session = Depends(get_db)):
 # BADGES #
 #--------#
 def compute_user_badges(event: schemas.Event, db: Session = Depends(get_db)):
-    count = db.query(models.Event).filter(
-        models.Event.user_id == event.user_id,
-        models.Event.event_type == event.event_type).count()
+    query = db.query(
+        models.Event).filter(models.Event.event_type == event.event_type)
+    if event.user_id:
+        query = query.filter(models.Event.user_id == event.user_id)
+    elif event.device_id:
+        query = query.filter(models.Event.device_id == event.device_id)
+    count = query.count()
     if count == 1:
         badge_name = constants.EVENT_TYPES[event.event_type]["init_badge"]
         level = 0
@@ -86,20 +84,27 @@ def compute_user_badges(event: schemas.Event, db: Session = Depends(get_db)):
         level = count / 10
     return crud.create_or_update_user_badge(db=db,
                                             user_id=event.user_id,
+                                            device_id=event.device_id,
                                             badge_name=badge_name,
                                             level=level)
 
 
-@app.get("/user/{user_id}/badges")
-def get_user_badges(user_id: str, db: Session = Depends(get_db)):
-    return crud.get_user_badges(db, user_id=user_id)
+@app.get("/badges")
+def get_badges(user_id: str = None,
+               device_id: str = None,
+               db: Session = Depends(get_db)):
+    return crud.get_badges(db, user_id=user_id, device_id=device_id)
 
 
-@app.get("/user/{user_id}/score")
-def get_user_score(user_id: str,
-                   event_type: str = None,
-                   db: Session = Depends(get_db)):
-    return crud.get_user_score(db, user_id=user_id, event_type=event_type)
+@app.get("/scores")
+def get_scores(user_id: str = None,
+               device_id: str = None,
+               event_type: str = None,
+               db: Session = Depends(get_db)):
+    return crud.get_scores(db,
+                           user_id=user_id,
+                           device_id=device_id,
+                           event_type=event_type)
 
 
 @app.get("/leaderboard")
