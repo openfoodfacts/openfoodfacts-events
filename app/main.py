@@ -28,7 +28,7 @@ def get_db():
 #--------#
 # EVENTS #
 #--------#
-@app.post("/events/", response_model=schemas.Event)
+@app.post("/events", response_model=schemas.Event)
 def create_event(event: schemas.Event,
                  background_tasks: BackgroundTasks,
                  db: Session = Depends(get_db)):
@@ -38,7 +38,7 @@ def create_event(event: schemas.Event,
     return item
 
 
-@app.get("/events/", response_model=List[schemas.Event])
+@app.get("/events", response_model=List[schemas.Event])
 def get_events(user_id: str = None,
                device_id: str = None,
                skip: int = 0,
