@@ -109,7 +109,7 @@ def get_leaderboard(db: Session, event_type: str = None):
         models.Event.user_id, models.Event.device_id)
     if event_type:
         query = query.filter(models.Event.event_type == event_type)
-    query = query.group_by(models.Event.user_id)
+    query = query.group_by(models.Event.user_id, models.Event.device_id)
     results = query.order_by(desc('total_score')).all()
     return [{
         "score": r.total_score,
