@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  api:
+    restart: always
+    image: ghcr.io/openfoodfacts/openfoodfacts-events
+    environment:
+      - SQLALCHEMY_DATABASE_URI=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}/${POSTGRES_DB}
+    networks:
+      - webnet
+    depends_on:
+      - postgres
+    ports:
+      - 8000:8000
+
+  postgres:
+    restart: always
+    image: postgres:11.2-alpine
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+    volumes:
+      - events-data:/var/lib/postgresql/data
+    command: postgres -c shared_buffers=1024MB -c work_mem=64MB
+    mem_limit: 4g
+    shm_size: 1g
+    networks:
+      - webnet
+
+volumes:
+  events-data:
+
+networks:
+  webnet:
