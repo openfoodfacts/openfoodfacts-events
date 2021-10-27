@@ -10,6 +10,7 @@ class Event(BaseModel):
     user_id: Optional[str]
     device_id: Optional[str]
     barcode: Optional[str]
+    points: Optional[int]
 
     class Config:
         orm_mode = True
