@@ -1,9 +1,7 @@
 from typing import List
 
 from fastapi import Depends, FastAPI, BackgroundTasks
-from time import sleep
 from sqlalchemy.orm import Session
-from sqlalchemy.sql import func
 from starlette_exporter import PrometheusMiddleware, handle_metrics
 
 from . import crud, models, schemas, constants
@@ -13,7 +11,7 @@ models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 app.add_middleware(PrometheusMiddleware)
-app.add_route("/metrics", handle_metrics)
+app.add_route('/metrics', handle_metrics)
 
 
 # Dependency
@@ -28,17 +26,19 @@ def get_db():
 #--------#
 # EVENTS #
 #--------#
-@app.post("/events", response_model=schemas.Event)
-def create_event(event: schemas.Event,
+@app.post('/events', response_model=schemas.EventBase)
+def create_event(event: schemas.EventCreate,
                  background_tasks: BackgroundTasks,
                  db: Session = Depends(get_db)):
-    event.points = constants.EVENT_TYPES[event.event_type]["points"]
+    event.points = 0
+    if event.event_type in constants.EVENT_TYPES:
+        event.points = constants.EVENT_TYPES[event.event_type]['points']
     item = crud.create_event(db=db, event=event)
     background_tasks.add_task(compute_user_badges, db=db, event=event)
     return item
 
 
-@app.get("/events", response_model=List[schemas.Event])
+@app.get('/events', response_model=List[schemas.EventBase])
 def get_events(user_id: str = None,
                device_id: str = None,
                skip: int = 0,
@@ -52,7 +52,7 @@ def get_events(user_id: str = None,
     return items
 
 
-@app.get("/events/count")
+@app.get('/events/count')
 def get_events_count(user_id: str = None,
                      device_id: str = None,
                      db: Session = Depends(get_db)):
@@ -68,7 +68,8 @@ def get_events_count(user_id: str = None,
 #--------#
 # BADGES #
 #--------#
-def compute_user_badges(event: schemas.Event, db: Session = Depends(get_db)):
+def compute_user_badges(event: schemas.EventCreate,
+                        db: Session = Depends(get_db)):
     query = db.query(
         models.Event).filter(models.Event.event_type == event.event_type)
     if event.user_id:
@@ -76,12 +77,20 @@ def compute_user_badges(event: schemas.Event, db: Session = Depends(get_db)):
     elif event.device_id:
         query = query.filter(models.Event.device_id == event.device_id)
     count = query.count()
+    event_config = constants.EVENT_TYPES.get(event.event_type)
+    if not event_config:
+        app.logger.warning(
+            f'Event type {event.event_type} is not configured in '
+            f'constants.EVENT_TYPES.')
+        return
     if count == 1:
-        badge_name = constants.EVENT_TYPES[event.event_type]["init_badge"]
+        badge_name = constants.EVENT_TYPES[event.event_type]['init_badge']
         level = 0
+    elif count >= 10:
+        badge_name = constants.EVENT_TYPES[event.event_type]['badge']
+        level = int(count / 10)
     else:
-        badge_name = constants.EVENT_TYPES[event.event_type]["badge"]
-        level = count / 10
+        return
     return crud.create_or_update_user_badge(db=db,
                                             user_id=event.user_id,
                                             device_id=event.device_id,
@@ -89,14 +98,14 @@ def compute_user_badges(event: schemas.Event, db: Session = Depends(get_db)):
                                             level=level)
 
 
-@app.get("/badges")
+@app.get('/badges', response_model=List[schemas.BadgeBase])
 def get_badges(user_id: str = None,
                device_id: str = None,
                db: Session = Depends(get_db)):
     return crud.get_badges(db, user_id=user_id, device_id=device_id)
 
 
-@app.get("/scores")
+@app.get('/scores')
 def get_scores(user_id: str = None,
                device_id: str = None,
                event_type: str = None,
@@ -107,6 +116,6 @@ def get_scores(user_id: str = None,
                            event_type=event_type)
 
 
-@app.get("/leaderboard")
+@app.get('/leaderboard')
 def get_leaderboard(db: Session = Depends(get_db), event_type: str = None):
     return crud.get_leaderboard(db, event_type=event_type)
