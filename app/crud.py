@@ -42,7 +42,7 @@ def count_events(db: Session,
     return query.count()
 
 
-def create_event(db: Session, event: schemas.Event):
+def create_event(db: Session, event: schemas.EventCreate):
     db_item = models.Event(**event.dict())
     db.add(db_item)
     db.commit()
@@ -111,8 +111,4 @@ def get_leaderboard(db: Session, event_type: str = None):
         query = query.filter(models.Event.event_type == event_type)
     query = query.group_by(models.Event.user_id, models.Event.device_id)
     results = query.order_by(desc('total_score')).all()
-    return [{
-        "score": r.total_score,
-        "user_id": r.user_id,
-        "device_id": r.device_id
-    } for r in results]
+    return [{'score': r.total_score, 'user_id': r.user_id} for r in results]
