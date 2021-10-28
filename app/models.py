@@ -1,7 +1,6 @@
-import datetime
-
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.sql.sqltypes import DateTime
+from sqlalchemy.sql import func
 
 from .database import Base
 
@@ -13,7 +12,7 @@ class Event(Base):
     user_id = Column(String, index=True, nullable=True)
     device_id = Column(String, nullable=True)
     event_type = Column(String, index=True)
-    timestamp = Column(DateTime)
+    timestamp = Column(DateTime, server_default=func.now())
     barcode = Column(Integer, nullable=True)
     points = Column(Integer)
 
