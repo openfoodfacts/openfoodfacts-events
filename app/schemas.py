@@ -6,7 +6,7 @@ from pydantic import BaseModel
 
 class EventBase(BaseModel):
     event_type: str
-    timestamp: datetime = datetime.utcnow()
+    timestamp: Optional[datetime]
     user_id: Optional[str]
     barcode: Optional[str]
     points: Optional[int]
