@@ -16,7 +16,7 @@ EVENT_TYPES = {
     },
     "product_photo_added": {
         "points": 20,
-        "init_badge:": "First picture uploaded",
+        "init_badge": "First picture uploaded",
         "badge": "Paparazzi"
     },
     "product_duplicate_found": {
