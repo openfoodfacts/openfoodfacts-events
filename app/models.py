@@ -1,7 +1,7 @@
 import datetime
 
 from sqlalchemy import Column, Integer, String
-from sqlalchemy.sql.sqltypes import Date, DateTime
+from sqlalchemy.sql.sqltypes import DateTime
 
 from .database import Base
 
