@@ -14,7 +14,7 @@ jobs:
       - name: Run developper workflow
         run:
           make dev
-          make livecheck
+          make status
           make clean
   lint:
     runs-on: ubuntu-latest
