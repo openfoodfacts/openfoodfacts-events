@@ -86,6 +86,8 @@ checks: flake8 black-check mypy isort-check
 
 lint: isort black
 
+integration: newman run tests/integration/postman_collection.json
+
 #------------#
 # Production #
 #------------#
