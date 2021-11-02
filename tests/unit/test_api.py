@@ -19,7 +19,11 @@ TEST_EVENT_CFG = EVENT_TYPES[TEST_EVENT['event_type']]
 def test_get_docs():
     response = client.get("/docs")
     assert response.status_code == 200
-    # assert response.json() == {"msg": "Hello World"}
+
+
+def test_get_metrics():
+    response = client.get("/metrics")
+    assert response.status_code == 200
 
 
 #-----------------#
