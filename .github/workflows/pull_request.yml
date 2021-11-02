@@ -13,9 +13,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Run developper workflow
         run:
-          make dev
-          make status
-          make clean
+          make dev && make livecheck && make clean
   lint:
     runs-on: ubuntu-latest
     steps:
