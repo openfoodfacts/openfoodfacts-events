@@ -1,17 +1,27 @@
 from typing import List
 
-from fastapi import Depends, FastAPI, BackgroundTasks
+from fastapi import Depends, FastAPI, BackgroundTasks, HTTPException, status
+from fastapi.security import HTTPBasic, HTTPBasicCredentials
+
 from sqlalchemy.orm import Session
 from starlette_exporter import PrometheusMiddleware, handle_metrics
 
 from . import crud, models, schemas, constants
 from .database import SessionLocal, engine
 
+import os
+import secrets
+
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 app.add_middleware(PrometheusMiddleware)
 app.add_route('/metrics', handle_metrics)
+
+security = HTTPBasic()
+
+ADMIN_USERNAME = os.environ['ADMIN_USERNAME']
+ADMIN_PASSWORD = os.environ['ADMIN_PASSWORD']
 
 
 # Dependency
@@ -23,13 +33,28 @@ def get_db():
         db.close()
 
 
+def get_current_username(credentials: HTTPBasicCredentials = Depends(security)):
+    correct_username = secrets.compare_digest(credentials.username,
+                                              ADMIN_USERNAME)
+    correct_password = secrets.compare_digest(credentials.password,
+                                              ADMIN_PASSWORD)
+    if not (correct_username and correct_password):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect username or password",
+            headers={"WWW-Authenticate": "Basic"},
+        )
+    return credentials.username
+
+
 #--------#
 # EVENTS #
 #--------#
 @app.post('/events', response_model=schemas.EventBase)
 def create_event(event: schemas.EventCreate,
                  background_tasks: BackgroundTasks,
-                 db: Session = Depends(get_db)):
+                 db: Session = Depends(get_db),
+                 username: str = Depends(get_current_username)):
     event.points = 0
     if event.event_type in constants.EVENT_TYPES:
         event.points = constants.EVENT_TYPES[event.event_type]['points']

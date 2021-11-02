@@ -6,6 +6,8 @@ services:
     image: ghcr.io/openfoodfacts/openfoodfacts-events:${TAG}
     environment:
       - SQLALCHEMY_DATABASE_URI=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}/${POSTGRES_DB}
+      - ADMIN_USERNAME
+      - ADMIN_PASSWORD
     networks:
       - webnet
     depends_on:
