@@ -1,0 +1,49 @@
+name: Tests
+
+on:
+  pull_request:
+  push:
+    branches:
+      - release-v*.*.*
+
+jobs:
+  dev:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run developper workflow
+        run:
+          make dev && make livecheck && make clean
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Run lint tests
+        run:
+          make lint
+  unit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Run unit tests
+        run:
+          make unit
+  integration:
+    runs-on: ubuntu-latest    
+    steps:
+      - uses: actions/checkout@v2
+      - run:
+          make dev
+      - name: Run Postman collection
+        uses: matt-ball/newman-action@master
+        with:
+          collection: tests/integration/openfoodfacts-events.postman_collection.json
+          environment: tests/integration/off-local.postman_environment.json
+      - run:
+          make clean

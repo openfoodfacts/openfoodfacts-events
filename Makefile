@@ -86,6 +86,16 @@ checks: flake8 black-check mypy isort-check
 
 lint: isort black
 
+integration:
+	make dev
+	newman run tests/integration/openfoodfacts-events.postman_collection.json -e tests/integration/off-local.postman_environment.json
+	make hdown
+
+unit:
+	pip install pytest
+	pip install -r requirements.txt
+	ADMIN_USERNAME=test ADMIN_PASSWORD=test pytest -vv tests/unit
+
 #------------#
 # Production #
 #------------#

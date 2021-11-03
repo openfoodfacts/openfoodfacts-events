@@ -1,0 +1,830 @@
+{
+	"info": {
+		"_postman_id": "3b853a73-f2a7-42f1-b2db-4f3c6bf982e6",
+		"name": "openfoodfacts-events",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Events API",
+			"item": [
+				{
+					"name": "Events",
+					"item": [
+						{
+							"name": "Add event [invite_shared]",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{EVENTS_ADMIN_USERNAME}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{EVENTS_ADMIN_PASSWORD}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\": \"ocervell\",\n    \"event_type\": \"invite_shared\",\n    \"device_id\": \"1A2B-2B3C-3D4E-4F5G\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{EVENTS_DOMAIN_NAME}}/events",
+									"host": [
+										"{{EVENTS_DOMAIN_NAME}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add event [product_scanned]",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{EVENTS_ADMIN_USERNAME}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{EVENTS_ADMIN_PASSWORD}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\": \"ocervell\",\n    \"event_type\": \"product_scanned\",\n    \"device_id\": \"1A2B-2B3C-3D4E-4F5G\",\n    \"barcode\": \"123456789\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{EVENTS_DOMAIN_NAME}}/events",
+									"host": [
+										"{{EVENTS_DOMAIN_NAME}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add event [product_added]",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{EVENTS_ADMIN_USERNAME}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{EVENTS_ADMIN_PASSWORD}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\": \"ocervell\",\n    \"event_type\": \"product_added\",\n    \"device_id\": \"1A2B-2B3C-3D4E-4F5G\",\n    \"barcode\": \"123456789\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{EVENTS_DOMAIN_NAME}}/events",
+									"host": [
+										"{{EVENTS_DOMAIN_NAME}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add event [product_photo_added]",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{EVENTS_ADMIN_USERNAME}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{EVENTS_ADMIN_PASSWORD}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\": \"ocervell\",\n    \"event_type\": \"product_photo_added\",\n    \"device_id\": \"1A2B-2B3C-3D4E-4F5G\",\n    \"barcode\": \"123456789\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{EVENTS_DOMAIN_NAME}}/events",
+									"host": [
+										"{{EVENTS_DOMAIN_NAME}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add event [product_duplicate_found]",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{EVENTS_ADMIN_USERNAME}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{EVENTS_ADMIN_PASSWORD}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\": \"ocervell\",\n    \"event_type\": \"product_duplicate_found\",\n    \"device_id\": \"1A2B-2B3C-3D4E-4F5G\",\n    \"barcode\": \"123456789\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{EVENTS_DOMAIN_NAME}}/events",
+									"host": [
+										"{{EVENTS_DOMAIN_NAME}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add event [product_edited]",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{EVENTS_ADMIN_USERNAME}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{EVENTS_ADMIN_PASSWORD}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\": \"ocervell\",\n    \"event_type\": \"product_edited\",\n    \"device_id\": \"1A2B-2B3C-3D4E-4F5G\",\n    \"barcode\": \"123456789\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{EVENTS_DOMAIN_NAME}}/events",
+									"host": [
+										"{{EVENTS_DOMAIN_NAME}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add event [product_completed]",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{EVENTS_ADMIN_USERNAME}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{EVENTS_ADMIN_PASSWORD}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\": \"ocervell\",\n    \"event_type\": \"product_completed\",\n    \"device_id\": \"1A2B-2B3C-3D4E-4F5G\",\n    \"barcode\": \"123456789\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{EVENTS_DOMAIN_NAME}}/events",
+									"host": [
+										"{{EVENTS_DOMAIN_NAME}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add anonymous event [product_completed]",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{EVENTS_ADMIN_USERNAME}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{EVENTS_ADMIN_PASSWORD}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"event_type\": \"product_completed\",\n    \"device_id\": \"anonymous_user_1\",\n    \"barcode\": \"123456789\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{EVENTS_DOMAIN_NAME}}/events",
+									"host": [
+										"{{EVENTS_DOMAIN_NAME}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all events",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\": \"ocervell\",\n    \"event_type\": \"product_scan\",\n    \"device_id\": \"1A2B-2B3C-3D4E-4F5G\",\n    \"barcode\": \"123456789\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{EVENTS_DOMAIN_NAME}}/events",
+									"host": [
+										"{{EVENTS_DOMAIN_NAME}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get user events",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\": \"ocervell\",\n    \"event_type\": \"product_scan\",\n    \"device_id\": \"1A2B-2B3C-3D4E-4F5G\",\n    \"barcode\": \"123456789\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{EVENTS_DOMAIN_NAME}}/events?user_id=ocervell",
+									"host": [
+										"{{EVENTS_DOMAIN_NAME}}"
+									],
+									"path": [
+										"events"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "ocervell"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get anonymous user events",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\": \"ocervell\",\n    \"event_type\": \"product_scan\",\n    \"device_id\": \"1A2B-2B3C-3D4E-4F5G\",\n    \"barcode\": \"123456789\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{EVENTS_DOMAIN_NAME}}/events?device_id=anonymous_user_1",
+									"host": [
+										"{{EVENTS_DOMAIN_NAME}}"
+									],
+									"path": [
+										"events"
+									],
+									"query": [
+										{
+											"key": "device_id",
+											"value": "anonymous_user_1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Count all events",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{EVENTS_DOMAIN_NAME}}/events/count",
+									"host": [
+										"{{EVENTS_DOMAIN_NAME}}"
+									],
+									"path": [
+										"events",
+										"count"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Count user events",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{EVENTS_DOMAIN_NAME}}/events/count?user_id=ocervell",
+									"host": [
+										"{{EVENTS_DOMAIN_NAME}}"
+									],
+									"path": [
+										"events",
+										"count"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "ocervell"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Count anonymous user events",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{EVENTS_DOMAIN_NAME}}/events/count?device_id=anonymous_user_1",
+									"host": [
+										"{{EVENTS_DOMAIN_NAME}}"
+									],
+									"path": [
+										"events",
+										"count"
+									],
+									"query": [
+										{
+											"key": "device_id",
+											"value": "anonymous_user_1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Leaderboard",
+					"item": [
+						{
+							"name": "Get leaderboard",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{EVENTS_DOMAIN_NAME}}/leaderboard",
+									"host": [
+										"{{EVENTS_DOMAIN_NAME}}"
+									],
+									"path": [
+										"leaderboard"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get leaderboard [daily]",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{EVENTS_DOMAIN_NAME}}/leaderboard?time_range=day",
+									"host": [
+										"{{EVENTS_DOMAIN_NAME}}"
+									],
+									"path": [
+										"leaderboard"
+									],
+									"query": [
+										{
+											"key": "time_range",
+											"value": "day"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get leaderboard [weekly]",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{EVENTS_DOMAIN_NAME}}/leaderboard?time_range=week",
+									"host": [
+										"{{EVENTS_DOMAIN_NAME}}"
+									],
+									"path": [
+										"leaderboard"
+									],
+									"query": [
+										{
+											"key": "time_range",
+											"value": "week"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get leaderboard [yearly]",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{EVENTS_DOMAIN_NAME}}/leaderboard?time_range=year",
+									"host": [
+										"{{EVENTS_DOMAIN_NAME}}"
+									],
+									"path": [
+										"leaderboard"
+									],
+									"query": [
+										{
+											"key": "time_range",
+											"value": "year"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get user badges",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{EVENTS_DOMAIN_NAME}}/badges?user_id=ocervell",
+									"host": [
+										"{{EVENTS_DOMAIN_NAME}}"
+									],
+									"path": [
+										"badges"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "ocervell"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get anonymous user badges",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{EVENTS_DOMAIN_NAME}}/badges?device_id=anonymous_user_1",
+									"host": [
+										"{{EVENTS_DOMAIN_NAME}}"
+									],
+									"path": [
+										"badges"
+									],
+									"query": [
+										{
+											"key": "device_id",
+											"value": "anonymous_user_1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get user total score",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\": \"ocervell\",\n    \"event_type\": \"product_edit\",\n    \"device_id\": \"1A2B-2B3C-3D4E-4F5G\",\n    \"barcode\": \"123456789\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{EVENTS_DOMAIN_NAME}}/scores?user_id=ocervell",
+									"host": [
+										"{{EVENTS_DOMAIN_NAME}}"
+									],
+									"path": [
+										"scores"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "ocervell"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get user score for product_scanned event",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{EVENTS_DOMAIN_NAME}}/scores?user_id=ocervell&event_type=product_scanned",
+									"host": [
+										"{{EVENTS_DOMAIN_NAME}}"
+									],
+									"path": [
+										"scores"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "ocervell"
+										},
+										{
+											"key": "event_type",
+											"value": "product_scanned"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get anonymous user score",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{EVENTS_DOMAIN_NAME}}/scores?device_id=anonymous_user_1",
+									"host": [
+										"{{EVENTS_DOMAIN_NAME}}"
+									],
+									"path": [
+										"scores"
+									],
+									"query": [
+										{
+											"key": "device_id",
+											"value": "anonymous_user_1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
