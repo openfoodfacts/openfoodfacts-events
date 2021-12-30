@@ -25,7 +25,7 @@ curl -X POST -u admin:admin https://events.openfoodfacts.net/events
 curl https://events.openfoodfacts.net/events
 ```
 
-**Get leaderboardd:**
+**Get leaderboard:**
 ```
 curl https://events.openfoodfacts.net/leaderboard
 ```
