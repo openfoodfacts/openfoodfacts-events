@@ -13,7 +13,7 @@ idna==3.3
 iniconfig==1.1.1
 isort==5.9.3
 mypy-extensions==0.4.3
-packaging==21.2
+packaging==21.3
 pathspec==0.9.0
 platformdirs==2.4.0
 pluggy==1.0.0
