@@ -28,7 +28,7 @@ regex==2021.11.10
 requests==2.26.0
 six==1.16.0
 sniffio==1.2.0
-SQLAlchemy==1.4.26
+SQLAlchemy==1.4.34
 starlette==0.16.0
 starlette-exporter==0.11.0
 toml==0.10.2
