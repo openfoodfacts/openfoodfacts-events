@@ -8,6 +8,7 @@ on:
 
 env:
   POETRY_VERSION: '1.1.13'
+  POETRY_CACHE_DIR: .poetry_cache
   PYTHON_VERSION: '3.x'
 
 jobs:
@@ -41,9 +42,15 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-
+  
       - name: Install poetry
         run: pip install --user poetry==${{ env.POETRY_VERSION }}
+
+      - uses: actions/cache@v3
+        id: cache-poetry
+        with:
+          path: ${{ env.POETRY_CACHE_DIR }}
+          key: ${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
 
       - name: Install dependencies
         run: poetry install
