@@ -1,11 +1,13 @@
-FROM python:3.9
+FROM python:3.10
 
-WORKDIR /opt/events
+WORKDIR /opt/events/
 
-COPY ./requirements.txt /opt/events/requirements.txt
+RUN pip install poetry
+RUN poetry config virtualenvs.create false
 
-RUN pip install --no-cache-dir --upgrade -r /opt/events/requirements.txt
+COPY pyproject.toml poetry.lock /opt/events/
+RUN poetry install
 
 COPY ./app /opt/events/app
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--proxy-headers"]
+CMD ["poetry", "run", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--proxy-headers"]
