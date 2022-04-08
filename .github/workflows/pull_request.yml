@@ -12,38 +12,45 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Run developper workflow
-        run:
-          make dev && make livecheck && make clean
+        run: make dev && make livecheck && make clean
+        
   lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - uses: actions/setup-python@v2
         with:
           python-version: '3.x'
+
       - name: Run lint tests
-        run:
-          make lint
+        run: make lint
+
   unit:
+    name: Unit tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install poetry
+        uses: abatilo/actions-poetry@v2.0.0
+
+      - name: Run unit tests
+        run: make unit
+
+  integration:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
-      - name: Run unit tests
-        run:
-          make unit
-  integration:
-    runs-on: ubuntu-latest    
-    steps:
-      - uses: actions/checkout@v3
-      - run:
-          make dev
+      - run: make dev
       - name: Run Postman collection
         uses: matt-ball/newman-action@master
         with:
           collection: tests/integration/openfoodfacts-events.postman_collection.json
           environment: tests/integration/off-local.postman_environment.json
-      - run:
-          make clean
+      - run: make clean
