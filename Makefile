@@ -92,7 +92,6 @@ integration:
 	make hdown
 
 unit:
-	poetry install
 	ADMIN_USERNAME=test ADMIN_PASSWORD=test poetry run pytest -vv tests/unit
 
 #------------#
