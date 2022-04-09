@@ -92,9 +92,7 @@ integration:
 	make hdown
 
 unit:
-	pip install pytest
-	pip install -r requirements.txt
-	ADMIN_USERNAME=test ADMIN_PASSWORD=test pytest -vv tests/unit
+	ADMIN_USERNAME=test ADMIN_PASSWORD=test poetry run pytest -vv tests/unit
 
 #------------#
 # Production #

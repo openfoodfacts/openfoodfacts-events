@@ -6,44 +6,68 @@ on:
     branches:
       - release-v*.*.*
 
+env:
+  POETRY_VERSION: '1.1.13'
+  POETRY_CACHE_DIR: .poetry_cache
+  PYTHON_VERSION: '3.x'
+
 jobs:
   dev:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Run developper workflow
-        run:
-          make dev && make livecheck && make clean
+
+      - name: Run developer workflow
+        run: make dev && make livecheck
+
   lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - uses: actions/setup-python@v2
         with:
-          python-version: '3.x'
+          python-version: ${{ env.PYTHON_VERSION }}
+
       - name: Run lint tests
-        run:
-          make lint
+        run: make lint
+
   unit:
+    name: Unit tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+  
+      - name: Install poetry
+        run: pip install --user poetry==${{ env.POETRY_VERSION }}
+
+      - uses: actions/cache@v3
+        id: cache-poetry
+        with:
+          path: ${{ env.POETRY_CACHE_DIR }}
+          key: ${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
+
+      - name: Install dependencies
+        run: poetry install
+
+      - name: Unit tests
+        run: make unit
+
+  integration:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
-      - name: Run unit tests
-        run:
-          make unit
-  integration:
-    runs-on: ubuntu-latest    
-    steps:
-      - uses: actions/checkout@v3
-      - run:
-          make dev
+
+      - run: make dev
+
       - name: Run Postman collection
         uses: matt-ball/newman-action@master
         with:
           collection: tests/integration/openfoodfacts-events.postman_collection.json
           environment: tests/integration/off-local.postman_environment.json
-      - run:
-          make clean
+      - run: make clean

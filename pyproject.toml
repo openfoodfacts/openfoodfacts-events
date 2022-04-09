@@ -1,0 +1,53 @@
+[tool.poetry]
+name = "openfoodfacts-events"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+fastapi = "0.70.1"
+uvicorn = "0.15.0"
+SQLAlchemy = "1.4.26"
+starlette-exporter = "0.11.0"
+psycopg2-binary = "2.9.1"
+anyio = "3.3.4"
+asgiref = "3.4.1"
+attrs = "21.2.0"
+black = "21.10b0"
+certifi = "2021.10.8"
+cffi = "1.15.0"
+charset-normalizer = "2.0.11"
+click = "8.0.3"
+greenlet = "1.1.2"
+h11 = "0.12.0"
+idna = "3.3"
+iniconfig = "1.1.1"
+isort = "5.9.3"
+mypy-extensions = "0.4.3"
+packaging = "21.3"
+pathspec = "0.9.0"
+platformdirs = "2.4.0"
+pluggy = "1.0.0"
+prometheus-client = "0.12.0"
+py = "1.11.0"
+pycparser = "2.20"
+pydantic = "1.8.2"
+pyparsing = "2.4.7"
+pytest = "6.2.5"
+regex = "2021.11.10"
+requests = "2.26.0"
+six = "1.16.0"
+sniffio = "1.2.0"
+starlette = "0.16.0"
+toml = "0.10.2"
+tomli = "1.2.2"
+typing-extensions = "3.10.0.2"
+urllib3 = "1.26.7"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.5"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
