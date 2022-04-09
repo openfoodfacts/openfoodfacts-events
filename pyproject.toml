@@ -43,7 +43,7 @@ starlette = "0.16.0"
 toml = "0.10.2"
 tomli = "1.2.3"
 typing-extensions = "3.10.0.2"
-urllib3 = "1.26.7"
+urllib3 = "1.26.9"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"
