@@ -406,7 +406,7 @@ full = ["itsdangerous", "jinja2", "python-multipart", "pyyaml", "requests", "gra
 
 [[package]]
 name = "starlette-exporter"
-version = "0.12.0"
+version = "0.13.0"
 description = "Prometheus metrics exporter for Starlette applications."
 category = "main"
 optional = false
@@ -472,7 +472,7 @@ standard = ["websockets (>=10.0)", "httptools (>=0.4.0)", "watchgod (>=0.6)", "p
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "3a64f919020607ff671f4276615b4a0b26661474e3740cd13a3179e0eaf5c64b"
+content-hash = "a82c6d1fa14d52608abaea446a46d3a11aab25280c9f37105e5196ed99871226"
 
 [metadata.files]
 anyio = [
@@ -907,8 +907,8 @@ starlette = [
     {file = "starlette-0.16.0.tar.gz", hash = "sha256:e1904b5d0007aee24bdd3c43994be9b3b729f4f58e740200de1d623f8c3a8870"},
 ]
 starlette-exporter = [
-    {file = "starlette_exporter-0.12.0-py3-none-any.whl", hash = "sha256:8d9537e94edef0a2afc396dfdc37687aa95dd594d00dbdab72bdd9dba6c28222"},
-    {file = "starlette_exporter-0.12.0.tar.gz", hash = "sha256:18d95d09cfb45427e6f54ae591982b5ef900aa150ce9b41e717675b18c5bdb74"},
+    {file = "starlette_exporter-0.13.0-py3-none-any.whl", hash = "sha256:9bdbca9e05ffc6b84a6491ee88ee47f12ffb3182b644a4998a496d859237c0cc"},
+    {file = "starlette_exporter-0.13.0.tar.gz", hash = "sha256:15f21098586eae73e453e4e05bf61890c94e2bd83dfe0fb33b0acdf984294e84"},
 ]
 toml = [
     {file = "toml-0.10.2-py2.py3-none-any.whl", hash = "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"},
