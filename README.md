@@ -18,7 +18,7 @@ The API documentation is available [HERE](https://events.openfoodfacts.net/docs)
 
 ## Examples
 
-<details><summary><h2> CURL </h2></summary>
+<details><summary><h2> curl </h2></summary>
 
 **Create an event (needs auth):**
 ```
