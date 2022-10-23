@@ -7,13 +7,18 @@ system.
 
 To run the API locally, run `make dev`. This assumes you have `Makefile`, `Docker` and `docker-compose` installed on your machine.
 
+<br>
+
+![Github Repo Size](https://img.shields.io/github/repo-size/openfoodfacts/openfoodfacts-events?style=for-the-badge&color=aqua)
+
+
 ## API Documentation
 
-The API documentation is available at https://events.openfoodfacts.net/docs.
+The API documentation is available [HERE](https://events.openfoodfacts.net/docs)
 
 ## Examples
 
-### cURL
+<details><summary><h2> curl </h2></summary>
 
 **Create an event (needs auth):**
 ```
@@ -35,8 +40,11 @@ curl https://events.openfoodfacts.net/leaderboard
 curl https://events.openfoodfacts.net/badges?user_id=<USER_ID>
 curl https://events.openfoodfacts.net/badges?device_id=<DEVICE_ID>
 ```
+</details>
 
-### Python
+<br>
+
+<details><summary><h2> Python </h2></summary>
 
 ```py
 import requests
@@ -58,3 +66,12 @@ for ix, data in leaderboard.items():
 badges = request.get(API_URL + '/badges?user_id=test').json()
 print(badges)
 ```
+</details>
+
+<br>
+
+## Contributors
+
+<a href="https://github.com/openfoodfacts/openfoodfacts-events/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=openfoodfacts/openfoodfacts-events" />
+</a>
