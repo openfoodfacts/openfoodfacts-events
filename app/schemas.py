@@ -8,7 +8,7 @@ class EventBase(BaseModel):
     event_type: str
     timestamp: Optional[datetime]
     user_id: Optional[str]
-    barcode: Optional[int]
+    barcode: Optional[str]
     points: Optional[int]
 
     class Config:
