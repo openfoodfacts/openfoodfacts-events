@@ -13,7 +13,7 @@ class Event(Base):
     device_id = Column(String, nullable=True)
     event_type = Column(String, index=True)
     timestamp = Column(DateTime, server_default=func.now())
-    barcode = Column(Integer, nullable=True)
+    barcode = Column(String, nullable=True)
     points = Column(Integer)
 
 
