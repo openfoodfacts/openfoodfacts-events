@@ -68,6 +68,6 @@ jobs:
       - name: Run Postman collection
         uses: matt-ball/newman-action@master
         with:
-          environment: tests/integration/openfoodfacts-events.postman_collection.json
-          collection: tests/integration/off-local.postman_environment.json
+          collection: tests/integration/openfoodfacts-events.postman_collection.json
+          environment: tests/integration/off-local.postman_environment.json
       - run: make clean
