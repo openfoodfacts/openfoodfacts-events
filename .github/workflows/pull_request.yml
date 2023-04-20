@@ -46,12 +46,6 @@ jobs:
       - name: Install poetry
         run: pip install poetry
 
-      - uses: actions/cache@v3
-        id: cache-poetry
-        with:
-          path: ${{ env.POETRY_CACHE_DIR }}
-          key: ${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
-
       - name: Install dependencies
         run: poetry install
 
