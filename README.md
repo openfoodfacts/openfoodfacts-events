@@ -3,6 +3,11 @@
 API written using Fast API to manage events and implement a leaderboard / badge
 system.
 
+It can also be the foundation:
+* for users and categories dashboard / flow 
+* a rating system for edits to help moderation
+* statistics on read events like scans
+
 ## Installation
 
 To run the API locally, run `make dev`. This assumes you have `Makefile`, `Docker` and `docker-compose` installed on your machine.
