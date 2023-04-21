@@ -88,7 +88,7 @@ lint: isort black
 
 integration:
 	make dev
-	newman run tests/integration/openfoodfacts-events.postman_collection.json -e tests/integration/off-local.postman_environment.json
+	newman run tests/integration/openfoodfacts-events.postman_collection.json -e tests/integration/off-local.postman_environment.json --delay-request 5000
 	make hdown
 
 unit:
