@@ -63,4 +63,5 @@ jobs:
         with:
           collection: tests/integration/openfoodfacts-events.postman_collection.json
           environment: tests/integration/off-local.postman_environment.json
+          delay-request: 5000
       - run: make clean
