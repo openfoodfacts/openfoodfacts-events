@@ -719,6 +719,23 @@ tomli = ">=1.0.0"
 testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "pygments (>=2.7.2)", "requests", "xmlschema"]
 
 [[package]]
+name = "pytest-alembic"
+version = "0.10.4"
+description = "A pytest plugin for verifying alembic migrations."
+category = "main"
+optional = false
+python-versions = ">=3.6,<4"
+files = [
+    {file = "pytest_alembic-0.10.4-py3-none-any.whl", hash = "sha256:8e9a5340c918c6bd43b540d1f47fab9a27aaec39d66580c4b711f40cec7e9b90"},
+    {file = "pytest_alembic-0.10.4.tar.gz", hash = "sha256:368f2b28caaa791a9788fdebebe973406a34b33162e8614b7596147e524711f7"},
+]
+
+[package.dependencies]
+alembic = "*"
+pytest = ">=6.0"
+sqlalchemy = "*"
+
+[[package]]
 name = "pytest-dotenv"
 version = "0.5.2"
 description = "A py.test plugin that parses environment files before running tests"
@@ -1059,4 +1076,4 @@ standard = ["PyYAML (>=5.1)", "colorama (>=0.4)", "httptools (>=0.4.0)", "python
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "8391ae5d4e1cd59c7d011874576deb0d0d6d6667af6702d884c702c91af9b364"
+content-hash = "082d73d6222dffba8327a125d425add8a68dd8f32a6acbe9ee9e84b4fd21f50f"
