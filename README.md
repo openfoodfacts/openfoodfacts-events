@@ -58,3 +58,16 @@ for ix, data in leaderboard.items():
 badges = request.get(API_URL + '/badges?user_id=test').json()
 print(badges)
 ```
+# Database schema migrations
+The schema migrations are managed by [Alembic](https://alembic.sqlalchemy.org)
+
+You can type for example
+```
+# generate the schema migration script
+# To do after each important update in the model
+alembic revision -m "My model changes"
+# upgrade the schema at the top of the revision history
+alembic upgrade head
+```
+
+You can find more informations in the [Alembic](https://alembic.sqlalchemy.org) documentation, and [pytest-alembic](https://pytest-alembic.readthedocs.io/en/latest/) for writing tests about your migrations.
