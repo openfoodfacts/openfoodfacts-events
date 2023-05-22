@@ -5,6 +5,7 @@ from sqlalchemy import pool
 from alembic import context
 from app.database import SQLALCHEMY_DATABASE_URL
 from app import models
+
 DATABASE_URL = "postgresql+psycopg2://postgres:postgres@postgres:5432"
 
 # this is the Alembic Config object, which provides
