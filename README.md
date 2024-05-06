@@ -12,6 +12,8 @@ It can also be the foundation:
 
 To run the API locally, run `make dev`. This assumes you have `Makefile`, `Docker` and `docker-compose` installed on your machine.
 
+It will work best with a local install of Product Opener sending events to it: https://openfoodfacts.github.io/openfoodfacts-server/ but you can simulate events.
+
 ## API Documentation
 
 The API documentation is available at https://events.openfoodfacts.net/docs.
