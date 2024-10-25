@@ -4,9 +4,13 @@ on:
   issues:
     types:
       - opened
+      - labeled
+      - edited
   pull_request:
     types:
       - opened
+      - labeled
+      - edited
 jobs:
   add-to-project:
     name: Add issue to project
