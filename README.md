@@ -1,12 +1,16 @@
 # Open Food Facts Events
 
 API written using Fast API to manage events and implement a leaderboard / badge
-system.
+system. It was written during the Google.org Fellowship Hackathon but never fully deployed to production. The plan is now to refactor it based on Open Food Facts Query to be able to have a database of events, and thus to have a Gamification database and backend. 
 
 It can also be the foundation:
 * for users and categories dashboard / flow 
 * a rating system for edits to help moderation
 * statistics on read events like scans
+
+## Help needed
+* Update to at least Python 3.8
+* Integrate with the rest of Open Food Facts
 
 ## Installation
 
