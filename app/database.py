@@ -1,9 +1,10 @@
+import logging
+import os
+import time
+
 from sqlalchemy import create_engine, event
 from sqlalchemy.engine import Engine
 from sqlalchemy.orm import declarative_base, sessionmaker
-import time
-import logging
-import os
 
 SQLALCHEMY_DATABASE_URL = os.environ.get(
     "SQLALCHEMY_DATABASE_URI", "sqlite:///./sql_app.db"

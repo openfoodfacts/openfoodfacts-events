@@ -1,9 +1,9 @@
+from sqlalchemy import desc
 from sqlalchemy.orm import Session
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.sql import func
-from sqlalchemy import desc
 
-from . import models, schemas, database
+from . import database, models, schemas
 
 
 # --------#
@@ -46,7 +46,7 @@ def count_events(
 
 
 def create_event(db: Session, event: schemas.EventCreate):
-    db_item = models.Event(**event.dict())
+    db_item = models.Event(**event.model_dump())
     db.add(db_item)
     db.commit()
     db.refresh(db_item)

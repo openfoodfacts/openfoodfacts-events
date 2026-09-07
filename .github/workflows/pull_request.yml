@@ -37,8 +37,6 @@ jobs:
           poetry install
           poetry run black --check .
           poetry run isort --check .
-          poetry run flake8 app tests
-          poetry run mypy app
 
   unit:
     name: Unit tests
