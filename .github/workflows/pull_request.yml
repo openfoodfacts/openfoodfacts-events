@@ -7,15 +7,17 @@ on:
       - release-v*.*.*
 
 env:
-  POETRY_VERSION: "1.1.13"
-  POETRY_CACHE_DIR: .poetry_cache
-  PYTHON_VERSION: "3.x"
+  POETRY_VERSION: "1.8.5"
+  PYTHON_VERSION: "3.12"
+
+permissions:
+  contents: read
 
 jobs:
   dev:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v4
 
       - name: Run developer workflow
         run: make dev && make livecheck
@@ -23,25 +25,31 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v7.0.0
+      - uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
       - name: Run lint tests
-        run: make lint
+        run: |
+          pipx install poetry==${POETRY_VERSION}
+          poetry install
+          poetry run black --check .
+          poetry run isort --check .
+          poetry run flake8 app tests
+          poetry run mypy app
 
   unit:
     name: Unit tests
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v4
       - name: Install poetry
-        run: pipx install poetry
+        run: pipx install poetry==${POETRY_VERSION}
 
-      - uses: actions/setup-python@v7.0.0
+      - uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
@@ -54,12 +62,12 @@ jobs:
   integration:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v4
 
       - run: make dev
 
       - name: Run Postman collection
-        uses: matt-ball/newman-action@master
+        uses: matt-ball/newman-action@v1
         with:
           collection: tests/integration/openfoodfacts-events.postman_collection.json
           environment: tests/integration/off-local.postman_environment.json
