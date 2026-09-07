@@ -6,7 +6,7 @@
 - Install Poetry, then run `poetry install`.
 - Set `ADMIN_USERNAME` and `ADMIN_PASSWORD` before importing the application.
 - Run `make unit` for the unit tests.
-- Run `make checks` for formatting, linting, and type checks.
+- Run `make checks` for formatting and linting.
 
 The Docker Compose development environment is started with `make dev`. It
 requires Docker and a local `.env` file with the database and authentication
