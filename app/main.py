@@ -1,16 +1,14 @@
+import os
+import secrets
 from typing import List
 
-from fastapi import Depends, FastAPI, BackgroundTasks, HTTPException, status
+from fastapi import BackgroundTasks, Depends, FastAPI, HTTPException, status
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
-
 from sqlalchemy.orm import Session
 from starlette_exporter import PrometheusMiddleware, handle_metrics
 
-from . import crud, models, schemas, constants
+from . import constants, crud, models, schemas
 from .database import SessionLocal, engine
-
-import os
-import secrets
 
 models.Base.metadata.create_all(bind=engine)
 
