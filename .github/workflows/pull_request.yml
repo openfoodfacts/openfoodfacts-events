@@ -6,6 +6,9 @@ on:
     branches:
       - release-v*.*.*
 
+permissions:
+  contents: read
+
 env:
   POETRY_VERSION: "1.1.13"
   POETRY_CACHE_DIR: .poetry_cache
