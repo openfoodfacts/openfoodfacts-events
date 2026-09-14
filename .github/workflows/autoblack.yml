@@ -5,6 +5,8 @@
 
 name: autoblack
 on: [pull_request]
+permissions:
+  contents: write
 jobs:
   black:
     runs-on: ubuntu-latest
