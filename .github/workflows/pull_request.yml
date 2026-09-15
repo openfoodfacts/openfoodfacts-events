@@ -9,7 +9,7 @@ on:
 env:
   POETRY_VERSION: "1.1.13"
   POETRY_CACHE_DIR: .poetry_cache
-  PYTHON_VERSION: "3.x"
+  PYTHON_VERSION: "3.10"
 
 jobs:
   dev:
@@ -39,14 +39,14 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: Install poetry
-        run: pipx install poetry
+        run: pipx install poetry==1.7.1
 
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
       - name: Install dependencies
-        run: poetry install
+        run: poetry install --without dev --no-root
 
       - name: Unit tests
         run: make unit

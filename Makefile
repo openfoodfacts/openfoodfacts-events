@@ -2,7 +2,7 @@
 
 NAME = "events"
 ENV_FILE ?= .env
-DOCKER_COMPOSE=docker-compose --env-file=${ENV_FILE}
+DOCKER_COMPOSE=docker compose --env-file=${ENV_FILE}
 
 .DEFAULT_GOAL := dev
 # avoid target corresponding to file names, to depends on them
