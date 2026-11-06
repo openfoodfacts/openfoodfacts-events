@@ -1,20 +1,33 @@
 # Open Food Facts Events
 
-API written using Fast API to manage events and implement a leaderboard / badge
-system. It was written during the Google.org Fellowship Hackathon but never fully deployed to production. The plan is now to refactor it based on Open Food Facts Query to be able to have a database of events, and thus to have a Gamification database and backend. 
+API written using FastAPI to manage events and implement a leaderboard and badge
+system. It was written during the Google.org Fellowship Hackathon and is now
+being refactored into a reusable events and gamification backend.
 
 It can also be the foundation:
 * for users and categories dashboard / flow 
 * a rating system for edits to help moderation
 * statistics on read events like scans
 
-## Help needed
-* Update to at least Python 3.8
-* Integrate with the rest of Open Food Facts
+## Contributing
+
+See [AGENTS.md](AGENTS.md) for development setup, quality checks, and security
+guidelines. Contributions are welcome, especially around integrating this API
+with the rest of Open Food Facts.
 
 ## Installation
 
-To run the API locally, run `make dev`. This assumes you have `Makefile`, `Docker` and `docker-compose` installed on your machine.
+To run the API locally, install Docker and Docker Compose, copy the required
+settings into a local `.env` file, and run `make dev`. The API is then
+available at http://localhost:8000 and its interactive documentation is at
+http://localhost:8000/docs.
+
+For a non-containerized setup, install dependencies with `poetry install`, set
+`ADMIN_USERNAME` and `ADMIN_PASSWORD`, and run:
+
+```sh
+poetry run uvicorn app.main:app --reload
+```
 
 It will work best with a local install of Product Opener sending events to it: https://openfoodfacts.github.io/openfoodfacts-server/ but you can simulate events.
 
@@ -27,22 +40,22 @@ The API documentation is available at https://events.openfoodfacts.net/docs.
 ### cURL
 
 **Create an event (needs auth):**
-```
+```sh
 curl -X POST -u admin:admin https://events.openfoodfacts.net/events
 ```
 
 **Get the list of events:**
-```
+```sh
 curl https://events.openfoodfacts.net/events
 ```
 
 **Get leaderboard:**
-```
+```sh
 curl https://events.openfoodfacts.net/leaderboard
 ```
 
 **Get user badges:**
-```
+```sh
 curl https://events.openfoodfacts.net/badges?user_id=<USER_ID>
 curl https://events.openfoodfacts.net/badges?device_id=<DEVICE_ID>
 ```
@@ -52,7 +65,7 @@ curl https://events.openfoodfacts.net/badges?device_id=<DEVICE_ID>
 ```py
 import requests
 
-API_URL = 'https://events.openfoodfacts.net' 
+API_URL = "https://events.openfoodfacts.net"
 
 # Create event
 response = requests.post(API_URL + '/events', json={'user_id': 'test', 'event_type': 'invite_shared'})
@@ -63,9 +76,9 @@ leaderboard = requests.get(API_URL + '/leaderboard').json()
 for ix, data in leaderboard.items():
     name = data['user_id'] or data['device_id']
     points = data['score']
-    print('{ix}: {name} with {score} points')
+    print(f"{ix}: {name} with {points} points")
 
 # Get user badges
-badges = request.get(API_URL + '/badges?user_id=test').json()
+badges = requests.get(API_URL + "/badges?user_id=test").json()
 print(badges)
 ```

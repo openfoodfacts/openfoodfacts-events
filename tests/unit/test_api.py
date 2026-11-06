@@ -1,8 +1,9 @@
-from app.main import ADMIN_PASSWORD, ADMIN_USERNAME, app
-from app.constants import EVENT_TYPES
+import os
+
 from fastapi.testclient import TestClient
 
-import os
+from app.constants import EVENT_TYPES
+from app.main import app
 
 client = TestClient(app)
 
@@ -42,7 +43,7 @@ def test_create_event():
     )
     assert response.status_code == 200
     json = response.json()
-    assert json["barcode"] == None
+    assert json["barcode"] is None
     assert json["points"] == TEST_EVENT_CFG["points"]
 
 

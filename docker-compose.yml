@@ -17,7 +17,7 @@ services:
 
   postgres:
     restart: always
-    image: postgres:11.2-alpine
+    image: postgres:16-alpine
     environment:
       - POSTGRES_USER
       - POSTGRES_PASSWORD
@@ -27,6 +27,11 @@ services:
     command: postgres -c shared_buffers=1024MB -c work_mem=64MB
     mem_limit: 4g
     shm_size: 1g
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     networks:
       - webnet
 

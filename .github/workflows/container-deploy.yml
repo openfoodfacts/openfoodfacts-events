@@ -8,6 +8,9 @@ on:
     tags: 
       - v*.*.*
 
+permissions:
+  contents: read
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -36,7 +39,7 @@ jobs:
       run: echo Timeout && false # fail if build time out
 
     - name: Checkout git repository
-      uses: appleboy/ssh-action@master
+      uses: appleboy/ssh-action@v1.2.2
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
@@ -59,7 +62,7 @@ jobs:
           git checkout -qf ${{ github.sha }}
 
     - name: Set environment variables
-      uses: appleboy/ssh-action@master
+      uses: appleboy/ssh-action@v1.2.2
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
@@ -89,7 +92,7 @@ jobs:
           echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> .env
 
     - name: Create Docker volumes
-      uses: appleboy/ssh-action@master
+      uses: appleboy/ssh-action@v1.2.2
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
@@ -103,7 +106,7 @@ jobs:
           make create_external_volumes
 
     - name: Start services
-      uses: appleboy/ssh-action@master
+      uses: appleboy/ssh-action@v1.2.2
       env:
         DOCKER_CLIENT_TIMEOUT: 120
         COMPOSE_HTTP_TIMEOUT: 120
@@ -121,7 +124,7 @@ jobs:
           make up
 
     - name: Check services are up
-      uses: appleboy/ssh-action@master
+      uses: appleboy/ssh-action@v1.2.2
       id: livecheck
       if: ${{ always() }}
       with:
@@ -137,7 +140,7 @@ jobs:
           make livecheck
 
     - name: Cleanup obsolete Docker objects
-      uses: appleboy/ssh-action@master
+      uses: appleboy/ssh-action@v1.2.2
       if: ${{ always() }}
       with:
         host: ${{ secrets.HOST }}

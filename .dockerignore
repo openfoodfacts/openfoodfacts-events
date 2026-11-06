@@ -1,0 +1,9 @@
+.git
+.github
+.env
+.pytest_cache
+.poetry_cache
+.venv
+__pycache__
+tests
+*.db
