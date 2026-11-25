@@ -6,6 +6,9 @@
  jobs:
    release-please:
      runs-on: ubuntu-latest
+     permissions:
+       contents: write
+       pull-requests: write
      steps:
        - uses: googleapis/release-please-action@v5.0.0
          with:
