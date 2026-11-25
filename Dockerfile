@@ -6,7 +6,7 @@ RUN pip install poetry
 RUN poetry config virtualenvs.create false
 
 COPY pyproject.toml poetry.lock /opt/events/
-RUN poetry install --no-dev
+RUN poetry install --only main --no-root
 
 COPY ./app /opt/events/app
 
